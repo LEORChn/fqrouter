@@ -322,6 +322,7 @@ public class Deployer {
     }
 
     private void makeExecutable(File file) throws Exception {
+        if (file.canExecute()) return;
         try {
             Method setExecutableMethod = File.class.getMethod("setExecutable", boolean.class, boolean.class);
             if ((Boolean) setExecutableMethod.invoke(file, true, true)) {
